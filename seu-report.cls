@@ -43,20 +43,20 @@
   {\setmainfont{Times New Roman}}
   {\setmainfont{TeX Gyre Termes}}
 \setCJKmainfont[
-  Path={font/宋体_黑体_仿宋/},
+  Path={font/},
   Extension=.ttf,
   UprightFont=SimSun,
-  BoldFont=SimHei,
-  ItalicFont=Fangsong
+  BoldFont=SimSun,
+  ItalicFont=SimSun
 ]{SimSun}
 \setCJKsansfont[
-  Path={font/宋体_黑体_仿宋/},
+  Path={font/},
   Extension=.ttf
-]{SimHei}
+]{SimSun}
 \setCJKmonofont[
-  Path={font/宋体_黑体_仿宋/},
+  Path={font/},
   Extension=.ttf
-]{Fangsong}
+]{SimSun}
 
 %% ========== 行距 ==========
 \renewcommand{\baselinestretch}{1.2}
