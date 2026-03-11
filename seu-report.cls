@@ -57,6 +57,12 @@
   Path={font/},
   Extension=.ttf
 ]{SimSun}
+% Heading-specific CJK font with stronger fake bold for section titles.
+\newCJKfontfamily\seuheadingfont[
+  Path={font/},
+  Extension=.ttf,
+  AutoFakeBold=4
+]{SimSun}
 
 %% ========== 行距 ==========
 \renewcommand{\baselinestretch}{1.2}
@@ -85,13 +91,13 @@
 %% ========== 标题层级 ==========
 % 一级标题：四号宋体加粗，段前段后各0.5行，左顶格
 \titleformat{\section}
-  {\zihao{4}\bfseries}
+  {\zihao{4}\seuheadingfont\bfseries}
   {\thesection}{0.5em}{}
 \titlespacing{\section}{0pt}{0.5\baselineskip}{0.5\baselineskip}
 
 % 二级标题：五号宋体加粗，段前段后各0.5行，左顶格
 \titleformat{\subsection}
-  {\zihao{5}\bfseries}
+  {\zihao{5}\seuheadingfont\bfseries}
   {\thesubsection}{0.5em}{}
 \titlespacing{\subsection}{0pt}{0.5\baselineskip}{0.5\baselineskip}
 
@@ -138,7 +144,7 @@
 %% ========== 参考文献格式 ==========
 \renewcommand{\refname}{参考文献}
 \renewenvironment{thebibliography}[1]{%
-  {\vspace{0.5\baselineskip}\noindent\zihao{4}\bfseries 参考文献\par\vspace{0.5\baselineskip}}%
+  {\vspace{0.5\baselineskip}\noindent\zihao{4}\seuheadingfont\bfseries 参考文献\par\vspace{0.5\baselineskip}}%
   \zihao{-5}%
   \list{[\@arabic\c@enumiv]}{%
     \settowidth\labelwidth{[#1]}%
@@ -183,7 +189,7 @@
 \newcommand{\makeheader}{%
   \thispagestyle{fancy}%
   % 中文标题
-  {\centering\zihao{-2}\bfseries\@cnTitle\par}
+  {\centering\zihao{-2}\seuheadingfont\bfseries\@cnTitle\par}
   \vspace{1em}
   % 中文作者
   {\centering\zihao{4}\CJKfamily{zhsong}\@cnAuthor\par}
