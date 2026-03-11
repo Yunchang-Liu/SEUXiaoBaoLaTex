@@ -39,10 +39,24 @@
 }
 
 %% ========== 字体设置 ==========
-\setmainfont{Times New Roman}
-\setCJKmainfont{SimSun}[AutoFakeBold=3]
-\setCJKsansfont{SimHei}
-\setCJKmonofont{FangSong}
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}}
+  {\setmainfont{TeX Gyre Termes}}
+\setCJKmainfont[
+  Path={font/宋体_黑体_仿宋/},
+  Extension=.ttf,
+  UprightFont=SimSun,
+  BoldFont=SimHei,
+  ItalicFont=Fangsong
+]{SimSun}
+\setCJKsansfont[
+  Path={font/宋体_黑体_仿宋/},
+  Extension=.ttf
+]{SimHei}
+\setCJKmonofont[
+  Path={font/宋体_黑体_仿宋/},
+  Extension=.ttf
+]{Fangsong}
 
 %% ========== 行距 ==========
 \renewcommand{\baselinestretch}{1.2}
