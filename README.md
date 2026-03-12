@@ -1,4 +1,4 @@
-# SEU XiaoBao LaTeX 模板
+# 🚀 SEU XiaoBao LaTeX 模板
 
 东南大学校庆研究生学术报告会论文 LaTeX 模板（非官方） 使用需谨慎！
 
@@ -8,11 +8,12 @@
 - **2026.03.12** - 调整作者简介部分、调整文中引用、调整行间距
 - **2026.03.11** - 创建项目
 
-## 效果预览
-![alt text](figures\image.png)
+## 📚 效果预览
+![alt text](figures/image.png)
+
 编译 `template.tex` 即可查看完整排版效果，模板已按报告会征稿要求配置好页面、字体、页眉页脚、双栏、标题层级、图表标题、参考文献等格式。
 
-## 项目结构
+## 🖥️ 项目结构
 
 ```
 ├── seu-report.cls          % 文档类（核心样式文件）
@@ -24,7 +25,7 @@
 └── .vscode/settings.json   % VS Code LaTeX Workshop 配置
 ```
 
-## 快速开始
+## 📜 快速开始
 
 ### 方式一：Overleaf（推荐）
 需要会员账号，如没有会员推荐方式二。
