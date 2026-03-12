@@ -1,4 +1,4 @@
-% seu-report.cls
+﻿% seu-report.cls
 % 东南大学校庆研究生学术报告会论文模板
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{seu-report}[2026/03/11 SEU Anniversary Report Template]
@@ -23,18 +23,47 @@
 \RequirePackage{xcolor}
 \RequirePackage{etoolbox}
 \RequirePackage[sort,compress]{cite}
-\AtBeginDocument{\mathchardef\min@citrange=1}  % 两个连续编号也压缩为范围，如[2-3]
+% cite.sty defaults to compressing ranges only when there are >=3 consecutive
+% numbers. Redefine the compressor so 2 consecutive numbers are also ranged:
+% [2,3] -> [2-3].
+\def\@compress@cite#1#2#3{%% This is executed for each number
+  \ifnum\@cite@incr=\z@
+    \advance\@tempcnta\@cclvi
+    \ifnum #1=\@tempcnta
+       \def\@h@ld{\citedash \@cite@out{#3}}%
+       \mathchardef\@cite@incr=\@cclvi
+    \else
+       \advance\@tempcnta-\@cclv
+       \ifnum #1=\@tempcnta
+         \def\@h@ld{\citedash \@cite@out{#3}}%
+         \mathchardef\@cite@incr=\@ne
+       \else
+         \@citea \@cite@out{#3}%
+       \fi
+    \fi
+  \else
+    \advance\@tempcnta\@cite@incr
+    \ifnum #1=\@tempcnta
+       \def\@h@ld{\citedash \@cite@out{#3}}%
+    \else
+       \@h@ld \@citea \@cite@out{#3}%
+       \let\@h@ld\@empty
+       \mathchardef\@cite@incr=\z@
+    \fi
+  \fi
+  \@tempcnta#1\let\@citea\citepunct
+}
 \RequirePackage{calc}
 
 %% ========== 页面设置 ==========
 \geometry{
   a4paper,
-  top=3.5cm,
-  bottom=3.5cm,
+  top=3.1cm,
+  bottom=3.0cm,
   left=2cm,
   right=2cm,
   headheight=2.0cm,
-  headsep=0.85cm,   % 页眉底部到正文顶部
+  headsep=1.0cm,   % 页眉底部到正文顶部
   footskip=1.25cm  % 正文底部到页脚底部
 }
 
@@ -67,6 +96,7 @@
 %% ========== 行距 ==========
 \renewcommand{\baselinestretch}{1.2}
 \setlength{\parindent}{2em}
+\flushbottom
 
 %% ========== 页眉页脚 ==========
 \pagestyle{fancy}
@@ -87,6 +117,7 @@
 %% ========== 双栏设置 ==========
 \setlength{\columnsep}{1.9em}  % 栏间距约1.9字符
 % 使用 \twocolumn 时脚注只在当前栏显示（不跨栏）
+\setlength{\skip\footins}{0pt}
 
 %% ========== 标题层级 ==========
 % 一级标题：四号宋体加粗，段前段后各0.5行，左顶格
@@ -199,10 +230,10 @@
   \vspace{0.5em}
   % 中文摘要
   {\leftskip=0pt\rightskip=0pt\parfillskip=0pt plus 1fil\relax
-   \zihao{-5}\linespread{1.3}\selectfont\noindent\textbf{摘\quad 要：}\@cnAbstract\par}
+   \zihao{-5}\linespread{1.4}\selectfont\noindent{\seuheadingfont\textbf{摘\quad 要：}}\@cnAbstract\par}
   \vspace{0.3em}
   % 中文关键词
-  {\zihao{-5}\noindent\textbf{关键词：}\@cnKeywords\par}
+  {\zihao{-5}\noindent{\seuheadingfont\textbf{关键词：}}\@cnKeywords\par}
   \vspace{0.5em}
   % 英文标题
   {\centering\zihao{-2}\bfseries\@enTitle\par}
@@ -215,7 +246,7 @@
   \vspace{0.5em}
   % 英文摘要
   {\leftskip=0pt\rightskip=0pt\parfillskip=0pt plus 1fil\relax
-   \zihao{-5}\linespread{1.25}\selectfont\noindent\textbf{Abstract: }\@enAbstract\par}
+   \zihao{-5}\linespread{1.4}\selectfont\noindent\textbf{Abstract: }\@enAbstract\par}
   \vspace{0.3em}
   % 英文关键词
   {\zihao{-5}\noindent\textbf{Key words: }\@enKeywords\par}
@@ -224,7 +255,10 @@
 
 %% ========== 作者简介（第一页左栏底部） ==========
 % 去掉脚注文本的缩进
-\renewcommand{\@makefntext}[1]{\noindent\begingroup\baselineskip=22pt #1\endgroup}
+\renewcommand{\@makefntext}[1]{\noindent #1}
+% 作者简介块行距（可调）
+\newlength{\authorinfobaselineskip}
+\setlength{\authorinfobaselineskip}{15pt}
 % 重定义脚注线：与正文空一行，线宽0.5栏宽
 \renewcommand{\footnoterule}{%
   \kern \baselineskip
@@ -235,7 +269,9 @@
   \begingroup
     \let\thefootnote\relax
     \footnotetext{%
-      {\zihao{-5}%
+      \parbox[t]{\columnwidth}{%
+        \zihao{-5}\selectfont
+        \setlength{\baselineskip}{\authorinfobaselineskip}%
         \ifx\@fundInfo\empty\else
           \@fundInfo\par
         \fi
