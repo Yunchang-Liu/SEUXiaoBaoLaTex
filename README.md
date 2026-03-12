@@ -49,7 +49,7 @@ xelatex template.tex
 xelatex template.tex   # 运行两次以生成正确的交叉引用
 ```
 
-### 方式三：VS Code
+### 方式三：VS Code（推荐）
 
 1. 安装 [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) 扩展
 2. 打开项目文件夹，项目已包含 `.vscode/settings.json` 配置
@@ -89,10 +89,6 @@ xelatex template.tex   # 运行两次以生成正确的交叉引用
 |------|------|
 | 英文正文 | Times New Roman |
 | 中文宋体 | SimSun |
-| 中文黑体 | SimHei |
-| 中文仿宋 | FangSong |
-
-Overleaf 已内置这些字体，本地编译请确保系统已安装。
 
 ## License
 
