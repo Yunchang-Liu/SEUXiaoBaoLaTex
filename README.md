@@ -4,8 +4,12 @@
 
 本模板目前仍在持续迭代中，欢迎大家提交 Issue 和 PR，共同完善。
 
-## 效果预览
+## 📢 Latest News  
+- **2026.03.12** - 调整作者简介部分、调整文中引用、调整行间距
+- **2026.03.11** - 创建项目
 
+## 效果预览
+![alt text](figures\image.png)
 编译 `template.tex` 即可查看完整排版效果，模板已按报告会征稿要求配置好页面、字体、页眉页脚、双栏、标题层级、图表标题、参考文献等格式。
 
 ## 项目结构
@@ -23,6 +27,7 @@
 ## 快速开始
 
 ### 方式一：Overleaf（推荐）
+需要会员账号，如没有会员推荐方式二。
 
 1. 下载本项目 ZIP（GitHub 页面点击 Code → Download ZIP）
 2. 打开 [Overleaf](https://www.overleaf.com)，点击 New Project → Upload Project
@@ -30,30 +35,12 @@
 4. 在 Overleaf 左上角 Menu 中，将编译器设置为 **XeLaTeX**
 5. 点击 Recompile 即可
 
-### 方式二：本地编译
+### 方式二：VS Code本地编译（推荐）
 
-**环境要求：** 安装 TeX Live（2020+）或 MiKTeX，需包含 `xelatex` 和 CTeX 宏集。
-
-**使用 latexmk（推荐）：**
-
-```bash
-latexmk template.tex
-```
-
-项目已配置 `.latexmkrc`，会自动使用 XeLaTeX 编译。
-
-**手动编译：**
-
-```bash
-xelatex template.tex
-xelatex template.tex   # 运行两次以生成正确的交叉引用
-```
-
-### 方式三：VS Code（推荐）
-
-1. 安装 [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) 扩展
-2. 打开项目文件夹，项目已包含 `.vscode/settings.json` 配置
-3. 打开 `template.tex`，按 `Ctrl+Alt+B` 编译
+1. 安装 TeX Live（2020+）
+2. 安装 [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) 扩展
+3. 打开项目文件夹，项目已包含 `.vscode/settings.json` 配置
+4. 打开 `template.tex`，按 `Ctrl+Alt+B` 编译
 
 ## 使用说明
 
@@ -73,13 +60,6 @@ xelatex template.tex   # 运行两次以生成正确的交叉引用
 \authorInfo{作者简介：...}
 \fundInfo{基金项目：...}       % 无基金可删除此行
 ```
-
-正文在 `\begin{document}` 之后的双栏区域中编写，支持：
-
-- 上标引用：`\upcite{ref1}` 或普通引用 `\cite{ref1}`
-- 三线表：使用 `booktabs` 的 `\toprule`、`\midrule`、`\bottomrule`
-- 表注：`\tabnote{注：...}`
-- 插图：标准 `\includegraphics` + `\captionof{figure}{...}`
 
 ## 字体说明
 
